@@ -4,5 +4,5 @@ build/.DS_Store
 
 # Ignore Frontend dependencies
 build/bower_components
-buid/.sass-cache/*
-buid/.sass-cache/
+build/.sass-cache/*
+build/.sass-cache/

@@ -1,10 +1,16 @@
 function createDialog(obj) {
-    var div = document.createElement('div');
-    document.body.appendChild(div);
+    var ernestDialog = document.querySelector('.ernest-dialog');
 
-    // Set class
-    div.classList.add('ernest-dialog');
-    div.innerHTML = obj;
+    if (ernestDialog !==null) {
+        ernestDialog.innerHTML = obj;
+    } else {
+        var div = document.createElement('div');
+        document.body.appendChild(div);
+
+        // Set class
+        div.classList.add('ernest-dialog');
+        div.innerHTML = obj;
+    }
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
