@@ -23,18 +23,37 @@ $z-index-alpha: 2147483647
 // Transitions
 $transition-duration-base: 200ms
 
+// Animation
+@include keyframes(animate-in)
+	0%
+		@include transform(translateX(100px))
+		opacity: 0
+
+	100%
+		@include transform(translateX(0px))
+		opacity: 1
+
 // Prefix all
 .ernest
 	&-dialog
 		@include position(fixed, $px-gutter-small $px-gutter-small null null)
 		@include transition(height, $ease-out-cubic, $transition-duration-base)
+		@include animation(animate-in, $ease-out-cubic, 500ms)
 		z-index: $z-index-alpha
-		border-radius: $border-radius-base
 		width: 300px
-		height: 60px
+		height: auto
 		background: $white
 		-webkit-backdrop-filter: 10px
 		border: 1px solid $border-grey
+		box-shadow: 0 2px 4px rgba($black, 0.05)
+		padding: $px-gutter-small
+		border-radius: 0
+		word-break: break-word
+		font:
+			family: 'Georgia', sans-serif
 
-		&:hover
-			height: 400px
+	&__close-btn
+		@include position(fixed, $px-gutter-small $px-gutter-small null null)
+		@include appearance(none)
+		z-index: $z-index-alpha
+		background: transparent

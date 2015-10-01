@@ -1,3 +1,8 @@
+function destroyDialog() {
+    var ernestDialog = document.querySelector('.ernest-dialog');
+    ernestDialog.parentNode.removeChild(ernestDialog);
+}
+
 function createDialog(obj) {
     var ernestDialog = document.querySelector('.ernest-dialog');
 
@@ -9,7 +14,25 @@ function createDialog(obj) {
 
         // Set class
         div.classList.add('ernest-dialog');
+
+        // Add text to the button
         div.innerHTML = obj;
+
+        // Create button
+        var btn = document.createElement('button');
+        btn.classList.add('ernest__close-btn')
+        btn.innerHTML = 'x';
+        document.body.appendChild(btn);
+
+        // Button event listener
+        btn.addEventListener('click', function(event) {
+            event.preventDefault();
+            destroyDialog();
+            setTimeout(function() {
+                // Remove the button after it's clicked
+                btn.parentNode.removeChild(btn);
+            }, 0);
+        });
     }
 }
 
