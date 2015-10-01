@@ -1,1 +1,6 @@
+# Ignore auto generated stuff
+config.codekit
 build/.DS_Store
+
+# Ignore Frontend dependencies
+build/bower_components

@@ -1,0 +1,40 @@
+// Import Bourbon & Neat
+@import "bower_components/bourbon/app/assets/stylesheets/_bourbon"
+@import "bower_components/neat/app/assets/stylesheets/_neat"
+
+// Colors
+$white: #fff
+$black: #000
+$brand-blue: #38a4e1
+$border-grey: #E7E7E7
+
+// Pixel gutters
+$px-gutter-tiny: 4px
+$px-gutter-small: 10px
+$px-gutter-base: 20px
+$px-gutter-large: 40px
+
+// Border Radii
+$border-radius-base: 4px
+
+// z-index
+$z-index-alpha: 2147483647
+
+// Transitions
+$transition-duration-base: 200ms
+
+// Prefix all
+.ernest
+	&-dialog
+		@include position(fixed, $px-gutter-small $px-gutter-small null null)
+		@include transition(height, $ease-out-cubic, $transition-duration-base)
+		z-index: $z-index-alpha
+		border-radius: $border-radius-base
+		width: 300px
+		height: 60px
+		background: $white
+		-webkit-backdrop-filter: 10px
+		border: 1px solid $border-grey
+
+		&:hover
+			height: 400px

@@ -1,0 +1,22 @@
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+.ernest-dialog {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  -webkit-transition: height, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+  -moz-transition: height, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+  transition: height, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+  z-index: 2147483647;
+  border-radius: 4px;
+  width: 300px;
+  height: 60px;
+  background: #fff;
+  -webkit-backdrop-filter: 10px;
+  border: 1px solid #E7E7E7; }
+  .ernest-dialog:hover {
+    height: 400px; }

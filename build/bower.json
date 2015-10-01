@@ -1,0 +1,10 @@
+{
+  "name": "Ernest",
+  "description": "Choose the best word for your writing.",
+  "version": "0.0.1",
+  "main": "app.css",
+  "dependencies": {
+    "bourbon": "latest",
+    "neat": "latest"
+  }
+}
