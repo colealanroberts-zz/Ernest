@@ -16,7 +16,7 @@
         "activeTab"
     ],
     "background": {
-        "scripts": ["earnest.js"]
+        "scripts": ["ernest.js"]
     },
     "web_accessible_resources": [
         "earnest-dialog.js"
