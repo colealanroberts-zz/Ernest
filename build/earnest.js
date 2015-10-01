@@ -3,31 +3,28 @@
 
     var apiKey = "4f369c814c0d91e72780ce036d7ab0ba";
 
+    function sendToListener(obj) {
+        console.log(obj);
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog', data: obj}, function(response) {
+                if (response.type == "test") {
+                    console.log('test received');
+                }
+            });
+        });
+    }
+
     function searchWord(info, tab) {
         var selectedWord = info.selectionText.toLowerCase();
+        var data;
 
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://words.bighugelabs.com/api/2/4f369c814c0d91e72780ce036d7ab0ba/' + selectedWord + '/json', true);
+        request.open('GET', 'http://words.bighugelabs.com/api/2/' + apiKey + '/' + selectedWord + '/json', true);
 
         request.onload = function() {
             if (request.status >= 200 && request.status < 400) {
-                var data = JSON.parse(request.responseText),
-                    dLen = Object.keys(data).length;
-
-                console.log(data);
-
-                for (var key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        var obj = data[key];
-
-                        for (var prop in obj) {
-                            if (obj.hasOwnProperty(prop)) {
-                                console.log(prop + " = " + obj[prop]);
-                            }
-                        }
-                    }
-                }
-
+                var data = JSON.parse(request.responseText);
+                sendToListener(data);
             } else {
                 console.log('We returned an error');
             }
@@ -39,15 +36,6 @@
 
         // get JSON
         request.send();
-
-        //
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog'}, function(response) {
-                if (response.type == "test") {
-                    console.log('test received');
-                }
-            });
-        });
     }
 
     // Right click menu
