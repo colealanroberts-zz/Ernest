@@ -37,9 +37,20 @@
             // Connection error
         };
 
+        // get JSON
         request.send();
+
+        //
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog'}, function(response) {
+                if (response.type == "test") {
+                    console.log('test received');
+                }
+            });
+        });
     }
 
+    // Right click menu
     chrome.contextMenus.create({
         title: "Earnest lookup '%s'",
         contexts: ["selection"],

@@ -12,16 +12,20 @@
         "128": "icons/icon128.png"
     },
     "permissions": [
-        "contextMenus"
+        "contextMenus",
+        "activeTab"
     ],
     "background": {
         "scripts": ["earnest.js"]
     },
+    "web_accessible_resources": [
+        "earnest-dialog.js"
+    ],
     "content_scripts": [
       {
         "matches": ["https://*/*", "http://*/*"],
-        "css": ["dialog.css"],
-        "js": ["dialog.js"],
+        "css": ["ernest-dialog.css"],
+        "js": ["ernest-dialog.js"],
         "run_at": "document_end"
       }
     ]
