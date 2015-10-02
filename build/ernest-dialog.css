@@ -45,6 +45,9 @@
 .ernest__results {
   color: #5c6985;
   font-size: 1.125em; }
+  .ernest__results-count {
+    display: block;
+    margin-bottom: 10px; }
 .ernest__btn-close {
   position: absolute;
   top: 10px;

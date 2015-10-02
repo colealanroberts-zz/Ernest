@@ -34,6 +34,16 @@
         request.send();
     }
 
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        if (request.text == "createDialog") {
+            createDialog(request.wordChosen, request.data);
+        }
+
+        if (request.text == "searchWord") {
+            searchWord();
+        }
+    });
+
     // Right click menu
     chrome.contextMenus.create({
         title: "Earnest lookup '%s'",
@@ -41,3 +51,4 @@
         onclick: searchWord
     });
 })();
+

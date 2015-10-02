@@ -1,3 +1,14 @@
+function detectKeyPress() {
+    var e = event;
+    window.addEventListener('keydown', function(e) {
+        if (e.shiftKey && e.keyCode == 69) {
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog', data: obj, wordChosen: word});
+            });
+        }
+    });
+}
+
 function destroyDialog() {
     var ernestDialog = document.querySelector('.ernest-dialog');
     ernestDialog.classList.remove('ernest-dialog--active');
@@ -7,30 +18,40 @@ function destroyDialog() {
 }
 
 function createDialog(wordPassed, obj) {
-    console.log('Word passsed: '  + wordPassed);
-    var ernestDialog     = document.querySelector('.ernest-dialog'),
-        ernestWordPassed = document.querySelector('.ernest__word-passed'),
-        ernestResults    = document.querySelector('.ernest__results');
+    var ernestDialog       = document.querySelector('.ernest-dialog'),
+        ernestWordPassed   = document.querySelector('.ernest__word-passed'),
+        ernestResults      = document.querySelector('.ernest__results'),
+        ernestResultsCount = document.querySelector('.ernest__results-count');
 
     // Assign var to object
     var data = obj;
 
-    // Iterate through key values
+    console.log(data);
+
+    // Iterate through key value
     for (var key in data) {
         if (data.hasOwnProperty(key)) {
             obj = data[key];
-
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
-                    var words = prop + ": " + ' ' + obj[prop];
+                    var words = obj[prop];
+                    var plainText;
+                    if (prop == 'syn') {
+                        plainText = 'synonyms';
+                    }
+                    if (prop == 'ant') {
+                        plainText = 'antonyms';
+                    }
+                    var propCount = 'Found ' + obj[prop].length + ' ' + plainText + '.';
                 }
             }
         }
     }
 
     if (ernestDialog !== null) {
-        ernestWordPassed.innerHTML = wordPassed;
-        ernestResults.innerHTML = words;
+        ernestWordPassed.innerHTML   = wordPassed;
+        ernestResults.innerHTML      = words;
+        ernestResultsCount.innerHTML = propCount;
     } else {
         ernestDialog = document.createElement('div');
         document.body.appendChild(ernestDialog);
@@ -43,14 +64,20 @@ function createDialog(wordPassed, obj) {
         ernestWordPassed.classList.add('ernest__word-passed');
         ernestDialog.appendChild(ernestWordPassed);
 
+        // Create results count
+        ernestResultsCount = document.createElement('span')
+        ernestResultsCount.classList.add('ernest__results-count');
+        ernestDialog.appendChild(ernestResultsCount)
+
         // Create results
         ernestResults = document.createElement('span');
         ernestResults.classList.add('ernest__results');
         ernestDialog.appendChild(ernestResults);
 
         // Add text
-        ernestWordPassed.innerHTML = wordPassed;
-        ernestResults.innerHTML = words;
+        ernestWordPassed.innerHTML   = wordPassed;
+        ernestResults.innerHTML      = words;
+        ernestResultsCount.innerHTML = propCount;
     }
 
     // Create button
@@ -74,3 +101,5 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       createDialog(request.wordChosen, request.data);
     }
 });
+
+detectKeyPress();
