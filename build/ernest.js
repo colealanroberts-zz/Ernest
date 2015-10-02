@@ -3,10 +3,10 @@
 
     var apiKey = "4f369c814c0d91e72780ce036d7ab0ba";
 
-    function sendToListener(obj) {
+    function sendToListener(word, obj) {
         console.log(obj);
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog', data: obj});
+            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog', data: obj, wordChosen: word});
         });
     }
 
@@ -20,7 +20,7 @@
         request.onload = function() {
             if (request.status >= 200 && request.status < 400) {
                 var data = JSON.parse(request.responseText);
-                sendToListener(data);
+                sendToListener(selectedWord, data);
             } else {
                 console.log('We returned an error');
             }

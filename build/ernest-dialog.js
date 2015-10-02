@@ -6,8 +6,11 @@ function destroyDialog() {
     }, 200);
 }
 
-function createDialog(obj) {
-    var ernestDialog = document.querySelector('.ernest-dialog');
+function createDialog(wordPassed, obj) {
+    console.log('Word passsed: '  + wordPassed);
+    var ernestDialog     = document.querySelector('.ernest-dialog'),
+        ernestWordPassed = document.querySelector('.ernest__word-passed'),
+        ernestResults    = document.querySelector('.ernest__results');
 
     // Assign var to object
     var data = obj;
@@ -19,29 +22,40 @@ function createDialog(obj) {
 
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
-                    var words = prop + " = " + obj[prop];
+                    var words = prop + ": " + ' ' + obj[prop];
                 }
             }
         }
     }
 
     if (ernestDialog !== null) {
-        ernestDialog.innerHTML = words;
+        ernestWordPassed.innerHTML = wordPassed;
+        ernestResults.innerHTML = words;
     } else {
         ernestDialog = document.createElement('div');
         document.body.appendChild(ernestDialog);
 
+        // Create word passed
+        ernestWordPassed = document.createElement('span');
+        ernestWordPassed.classList.add('ernest__word-passed');
+        ernestDialog.appendChild(ernestWordPassed);
+
+        // Create results
+        ernestResults = document.createElement('span');
+        ernestResults.classList.add('ernest__results');
+        ernestDialog.appendChild(ernestResults);
+
         // Set class
         ernestDialog.classList.add('ernest-dialog', 'ernest-dialog--active');
 
-        // Add text to the button
-        ernestDialog.innerHTML = words;
+        // Add text
+        ernestWordPassed.innerHTML = wordPassed;
+        ernestResults.innerHTML = words;
     }
 
     // Create button
     var btn = document.createElement('button');
     btn.classList.add('ernest__btn-close');
-    btn.innerHTML = 'x';
     ernestDialog.appendChild(btn);
 
     // Button event listener
@@ -57,7 +71,6 @@ function createDialog(obj) {
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.text == "createDialog") {
-      createDialog(request.data);
-      sendResponse({type: "test"});
+      createDialog(request.wordChosen, request.data);
     }
 });

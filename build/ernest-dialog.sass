@@ -7,6 +7,7 @@ $white: #fff
 $black: #000
 $brand-blue: #38a4e1
 $border-grey: #E7E7E7
+$brand-grey: #475167
 
 // Pixel gutters
 $px-gutter-tiny: 4px
@@ -27,29 +28,72 @@ $transition-duration-base: 200ms
 	&-dialog
 		@include position(fixed, $px-gutter-base $px-gutter-base null null)
 		@include transition(all, $ease-out-cubic, $transition-duration-base)
-		@include transform(translateX(100px))		
+		@include transform(translateX(100px))
 		z-index: $z-index-alpha
 		opacity: 0
 		width: 300px
 		height: auto
-		background: $white
+		background: rgba($white, 0.95)
 		-webkit-backdrop-filter: 10px
 		border: 1px solid $border-grey
 		box-shadow: 0 2px 4px rgba($black, 0.05)
 		padding: $px-gutter-base
 		border-radius: 0
 		word-break: break-word
+		-webkit-font-smoothing: antialiased
 		font:
-			family: 'Georgia', sans-serif
+			family: 'Baskerville', sans-serif
 
 		&--active
 			@include transition(all, $ease-out-cubic, $transition-duration-base)
-			@include transform(translateX(0px))	
+			@include transform(translateX(0px))
 			opacity: 1
 
+	&__word-passed
+		color: $brand-grey
+		display: block
+		text-transform: capitalize
+		border-bottom: 1px solid $border-grey
+		padding-bottom: $px-gutter-tiny
+		margin-bottom: $px-gutter-small
+		font:
+			style: italic
+			size: em(24px)
+
+	&__results
+		color: lighten($brand-grey, 10%)
+		font:
+			size: em(18px)
+
 	&__btn-close
-		@include position(absolute, $px-gutter-tiny $px-gutter-tiny null null)
+		@include position(absolute, $px-gutter-small $px-gutter-tiny null null)
 		@include appearance(none)
 		z-index: $z-index-alpha
+		cursor: pointer
 		background: transparent
 		border: 0
+		outline: 0
+
+		&:focus
+			border: 0
+			outline: 0
+
+		&:before,
+		&:after
+			@include transition(background, linear, $transition-duration-base)
+			@include position(absolute, 0 0 null null)
+			content: ''
+			width: 10px
+			height: 2px
+			display: inline-block
+			background: lighten($brand-grey, 45%)
+
+			&:hover
+				background: $brand-grey
+
+
+		&:before
+			@include transform(rotate(45deg))
+
+		&:after
+			@include transform(rotate(-45deg))

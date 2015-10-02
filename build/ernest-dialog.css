@@ -20,14 +20,15 @@ html {
   opacity: 0;
   width: 300px;
   height: auto;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: 10px;
   border: 1px solid #E7E7E7;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 20px;
   border-radius: 0;
   word-break: break-word;
-  font-family: "Georgia", sans-serif; }
+  -webkit-font-smoothing: antialiased;
+  font-family: "Baskerville", sans-serif; }
   .ernest-dialog--active {
     -webkit-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
     -moz-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
@@ -38,9 +39,21 @@ html {
     -o-transform: translateX(0px);
     transform: translateX(0px);
     opacity: 1; }
+.ernest__word-passed {
+  color: #475167;
+  display: block;
+  text-transform: capitalize;
+  border-bottom: 1px solid #E7E7E7;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+  font-style: italic;
+  font-size: 1.5em; }
+.ernest__results {
+  color: #5c6985;
+  font-size: 1.125em; }
 .ernest__btn-close {
   position: absolute;
-  top: 4px;
+  top: 10px;
   right: 4px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -48,5 +61,36 @@ html {
   -o-appearance: none;
   appearance: none;
   z-index: 2147483647;
+  cursor: pointer;
   background: transparent;
-  border: 0; }
+  border: 0;
+  outline: 0; }
+  .ernest__btn-close:focus {
+    border: 0;
+    outline: 0; }
+  .ernest__btn-close:before, .ernest__btn-close:after {
+    -webkit-transition: background, linear, 200ms;
+    -moz-transition: background, linear, 200ms;
+    transition: background, linear, 200ms;
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 2px;
+    display: inline-block;
+    background: #c0c6d4; }
+    .ernest__btn-close:before:hover, .ernest__btn-close:after:hover {
+      background: #475167; }
+  .ernest__btn-close:before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg); }
+  .ernest__btn-close:after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg); }
