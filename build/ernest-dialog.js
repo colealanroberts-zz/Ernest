@@ -2,7 +2,7 @@ function destroyDialog() {
     var ernestDialog = document.querySelector('.ernest-dialog');
     ernestDialog.classList.remove('ernest-dialog--active');
     setTimeout(function() {
-        ernestDialog.parentNode.removeChild(ernestDialog);    
+        ernestDialog.parentNode.removeChild(ernestDialog);
     }, 200);
 }
 
@@ -35,7 +35,7 @@ function createDialog(obj) {
         ernestDialog.classList.add('ernest-dialog', 'ernest-dialog--active');
 
         // Add text to the button
-        ernestDialog.innerHTML = words;        
+        ernestDialog.innerHTML = words;
     }
 
     // Create button
