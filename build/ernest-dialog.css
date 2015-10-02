@@ -1,9 +1,3 @@
-html {
-  box-sizing: border-box; }
-
-*, *::after, *::before {
-  box-sizing: inherit; }
-
 .ernest-dialog {
   position: fixed;
   top: 20px;
