@@ -6,8 +6,24 @@ function destroyDialog() {
 function createDialog(obj) {
     var ernestDialog = document.querySelector('.ernest-dialog');
 
-    if (ernestDialog !==null) {
-        ernestDialog.innerHTML = obj;
+    // Assign var to object
+    var data = obj;
+
+    // Iterate through key values
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            var obj = data[key];
+
+            for (var prop in obj) {
+                if (obj.hasOwnProperty(prop)) {
+                    var words = prop + " = " + obj[prop];
+                }
+            }
+        }
+    }
+
+    if (ernestDialog !== null) {
+        ernestDialog.innerHTML = words;
     } else {
         var div = document.createElement('div');
         document.body.appendChild(div);
@@ -16,11 +32,11 @@ function createDialog(obj) {
         div.classList.add('ernest-dialog');
 
         // Add text to the button
-        div.innerHTML = obj;
+        div.innerHTML = words;
 
         // Create button
         var btn = document.createElement('button');
-        btn.classList.add('ernest__close-btn')
+        btn.classList.add('ernest__close-btn');
         btn.innerHTML = 'x';
         document.body.appendChild(btn);
 
@@ -37,20 +53,8 @@ function createDialog(obj) {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	var data = request.data;
-	for (var key in data) {
-        if (data.hasOwnProperty(key)) {
-            var obj = data[key];
-
-            for (var prop in obj) {
-                if (obj.hasOwnProperty(prop)) {
-                	var words = prop + " = " + obj[prop];
-                }
-            }
-        }
-    }
     if (request.text == "createDialog") {
-      createDialog(words);
+      createDialog(request.data);
       sendResponse({type: "test"});
     }
 });

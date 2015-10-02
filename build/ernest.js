@@ -6,11 +6,7 @@
     function sendToListener(obj) {
         console.log(obj);
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog', data: obj}, function(response) {
-                if (response.type == "test") {
-                    console.log('test received');
-                }
-            });
+            chrome.tabs.sendMessage(tabs[0].id, {text: 'createDialog', data: obj});
         });
     }
 
