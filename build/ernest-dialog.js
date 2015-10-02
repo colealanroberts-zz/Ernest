@@ -3,7 +3,7 @@ function destroyDialog() {
     ernestDialog.classList.remove('ernest-dialog--active');
     setTimeout(function() {
         ernestDialog.parentNode.removeChild(ernestDialog);
-    }, 200);
+    }, 225);
 }
 
 function createDialog(wordPassed, obj) {
@@ -35,6 +35,9 @@ function createDialog(wordPassed, obj) {
         ernestDialog = document.createElement('div');
         document.body.appendChild(ernestDialog);
 
+        // Set class
+        ernestDialog.classList.add('ernest-dialog', 'ernest-dialog--active');
+
         // Create word passed
         ernestWordPassed = document.createElement('span');
         ernestWordPassed.classList.add('ernest__word-passed');
@@ -44,9 +47,6 @@ function createDialog(wordPassed, obj) {
         ernestResults = document.createElement('span');
         ernestResults.classList.add('ernest__results');
         ernestDialog.appendChild(ernestResults);
-
-        // Set class
-        ernestDialog.classList.add('ernest-dialog', 'ernest-dialog--active');
 
         // Add text
         ernestWordPassed.innerHTML = wordPassed;
