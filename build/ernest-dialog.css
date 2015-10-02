@@ -65,6 +65,8 @@ html {
   background: transparent;
   border: 0;
   outline: 0; }
+  .ernest__btn-close:hover:before, .ernest__btn-close:hover:after {
+    background: #38a4e1; }
   .ernest__btn-close:focus {
     border: 0;
     outline: 0; }
@@ -80,8 +82,6 @@ html {
     height: 2px;
     display: inline-block;
     background: #c0c6d4; }
-    .ernest__btn-close:before:hover, .ernest__btn-close:after:hover {
-      background: #475167; }
   .ernest__btn-close:before {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);

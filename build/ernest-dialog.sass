@@ -74,6 +74,11 @@ $transition-duration-base: 200ms
 		border: 0
 		outline: 0
 
+		&:hover
+			&:before,
+			&:after
+				background: $brand-blue
+
 		&:focus
 			border: 0
 			outline: 0
@@ -87,10 +92,6 @@ $transition-duration-base: 200ms
 			height: 2px
 			display: inline-block
 			background: lighten($brand-grey, 45%)
-
-			&:hover
-				background: $brand-grey
-
 
 		&:before
 			@include transform(rotate(45deg))
