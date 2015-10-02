@@ -4,64 +4,49 @@ html {
 *, *::after, *::before {
   box-sizing: inherit; }
 
-@-webkit-keyframes animate-in {
-  0% {
-    -webkit-transform: translateX(100px);
-    opacity: 0; }
-  100% {
-    -webkit-transform: translateX(0px);
-    opacity: 1; } }
-@-moz-keyframes animate-in {
-  0% {
-    -moz-transform: translateX(100px);
-    opacity: 0; }
-  100% {
-    -moz-transform: translateX(0px);
-    opacity: 1; } }
-@keyframes animate-in {
-  0% {
-    -webkit-transform: translateX(100px);
-    -moz-transform: translateX(100px);
-    -ms-transform: translateX(100px);
-    -o-transform: translateX(100px);
-    transform: translateX(100px);
-    opacity: 0; }
-  100% {
-    -webkit-transform: translateX(0px);
-    -moz-transform: translateX(0px);
-    -ms-transform: translateX(0px);
-    -o-transform: translateX(0px);
-    transform: translateX(0px);
-    opacity: 1; } }
 .ernest-dialog {
   position: fixed;
-  top: 10px;
-  right: 10px;
-  -webkit-transition: height, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
-  -moz-transition: height, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
-  transition: height, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
-  -webkit-animation: animate-in, cubic-bezier(0.215, 0.61, 0.355, 1), 500ms;
-  -moz-animation: animate-in, cubic-bezier(0.215, 0.61, 0.355, 1), 500ms;
-  animation: animate-in, cubic-bezier(0.215, 0.61, 0.355, 1), 500ms;
+  top: 20px;
+  right: 20px;
+  -webkit-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+  -moz-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+  transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+  -webkit-transform: translateX(100px);
+  -moz-transform: translateX(100px);
+  -ms-transform: translateX(100px);
+  -o-transform: translateX(100px);
+  transform: translateX(100px);
   z-index: 2147483647;
+  opacity: 0;
   width: 300px;
   height: auto;
   background: #fff;
   -webkit-backdrop-filter: 10px;
   border: 1px solid #E7E7E7;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 10px;
+  padding: 20px;
   border-radius: 0;
   word-break: break-word;
   font-family: "Georgia", sans-serif; }
-.ernest__close-btn {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  .ernest-dialog--active {
+    -webkit-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+    -moz-transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+    transition: all, cubic-bezier(0.215, 0.61, 0.355, 1), 200ms;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 1; }
+.ernest__btn-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
   z-index: 2147483647;
-  background: transparent; }
+  background: transparent;
+  border: 0; }

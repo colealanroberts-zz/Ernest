@@ -23,37 +23,33 @@ $z-index-alpha: 2147483647
 // Transitions
 $transition-duration-base: 200ms
 
-// Animation
-@include keyframes(animate-in)
-	0%
-		@include transform(translateX(100px))
-		opacity: 0
-
-	100%
-		@include transform(translateX(0px))
-		opacity: 1
-
-// Prefix all
 .ernest
 	&-dialog
-		@include position(fixed, $px-gutter-small $px-gutter-small null null)
-		@include transition(height, $ease-out-cubic, $transition-duration-base)
-		@include animation(animate-in, $ease-out-cubic, 500ms)
+		@include position(fixed, $px-gutter-base $px-gutter-base null null)
+		@include transition(all, $ease-out-cubic, $transition-duration-base)
+		@include transform(translateX(100px))		
 		z-index: $z-index-alpha
+		opacity: 0
 		width: 300px
 		height: auto
 		background: $white
 		-webkit-backdrop-filter: 10px
 		border: 1px solid $border-grey
 		box-shadow: 0 2px 4px rgba($black, 0.05)
-		padding: $px-gutter-small
+		padding: $px-gutter-base
 		border-radius: 0
 		word-break: break-word
 		font:
 			family: 'Georgia', sans-serif
 
-	&__close-btn
-		@include position(fixed, $px-gutter-small $px-gutter-small null null)
+		&--active
+			@include transition(all, $ease-out-cubic, $transition-duration-base)
+			@include transform(translateX(0px))	
+			opacity: 1
+
+	&__btn-close
+		@include position(absolute, $px-gutter-tiny $px-gutter-tiny null null)
 		@include appearance(none)
 		z-index: $z-index-alpha
 		background: transparent
+		border: 0

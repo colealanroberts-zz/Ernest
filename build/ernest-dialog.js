@@ -1,6 +1,9 @@
 function destroyDialog() {
     var ernestDialog = document.querySelector('.ernest-dialog');
-    ernestDialog.parentNode.removeChild(ernestDialog);
+    ernestDialog.classList.remove('ernest-dialog--active');
+    setTimeout(function() {
+        ernestDialog.parentNode.removeChild(ernestDialog);    
+    }, 200);
 }
 
 function createDialog(obj) {
@@ -12,7 +15,7 @@ function createDialog(obj) {
     // Iterate through key values
     for (var key in data) {
         if (data.hasOwnProperty(key)) {
-            var obj = data[key];
+            obj = data[key];
 
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
@@ -22,45 +25,34 @@ function createDialog(obj) {
         }
     }
 
-    function buildUI() {
-        var request = new XMLHttpRequest();
-        request.open('GET', 'someurl', true);
-
-        request.onload = function() {
-            if (request.status >= 200 && request.status < 400) {
-                ernestDialog.innerHTML = request.responseText;
-            }
-        }
-    }
-
     if (ernestDialog !== null) {
         ernestDialog.innerHTML = words;
     } else {
-        var ernestDialog = document.createElement('div');
+        ernestDialog = document.createElement('div');
         document.body.appendChild(ernestDialog);
 
         // Set class
-        ernestDialog.classList.add('ernest-dialog');
+        ernestDialog.classList.add('ernest-dialog', 'ernest-dialog--active');
 
         // Add text to the button
-        ernestDialog.innerHTML = words;
-
-        // Create button
-        var btn = document.createElement('button');
-        btn.classList.add('ernest__close-btn');
-        btn.innerHTML = 'x';
-        document.body.appendChild(btn);
-
-        // Button event listener
-        btn.addEventListener('click', function(event) {
-            event.preventDefault();
-            destroyDialog();
-            setTimeout(function() {
-                // Remove the button after it's clicked
-                btn.parentNode.removeChild(btn);
-            }, 0);
-        });
+        ernestDialog.innerHTML = words;        
     }
+
+    // Create button
+    var btn = document.createElement('button');
+    btn.classList.add('ernest__btn-close');
+    btn.innerHTML = 'x';
+    ernestDialog.appendChild(btn);
+
+    // Button event listener
+    btn.addEventListener('click', function(event) {
+        event.preventDefault();
+        destroyDialog();
+        setTimeout(function() {
+            // Remove the button after it's clicked
+            btn.parentNode.removeChild(btn);
+        }, 0);
+    });
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
