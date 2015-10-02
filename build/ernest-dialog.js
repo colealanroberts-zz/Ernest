@@ -22,17 +22,28 @@ function createDialog(obj) {
         }
     }
 
+    function buildUI() {
+        var request = new XMLHttpRequest();
+        request.open('GET', 'someurl', true);
+
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 400) {
+                ernestDialog.innerHTML = request.responseText;
+            }
+        }
+    }
+
     if (ernestDialog !== null) {
         ernestDialog.innerHTML = words;
     } else {
-        var div = document.createElement('div');
-        document.body.appendChild(div);
+        var ernestDialog = document.createElement('div');
+        document.body.appendChild(ernestDialog);
 
         // Set class
-        div.classList.add('ernest-dialog');
+        ernestDialog.classList.add('ernest-dialog');
 
         // Add text to the button
-        div.innerHTML = words;
+        ernestDialog.innerHTML = words;
 
         // Create button
         var btn = document.createElement('button');

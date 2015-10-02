@@ -19,7 +19,8 @@
         "scripts": ["ernest.js"]
     },
     "web_accessible_resources": [
-        "earnest-dialog.js"
+        "ernest-dialog.js",
+        "ernest-dialog.html"
     ],
     "content_scripts": [
       {
