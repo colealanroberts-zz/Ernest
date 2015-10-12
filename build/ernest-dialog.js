@@ -34,7 +34,7 @@ function createDialog(wordPassed, obj) {
             obj = data[key];
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
-                    var words = obj[prop];
+                    var words = obj[prop].join(', ');
                     var plainText;
                     if (prop == 'syn') {
                         plainText = 'synonyms';
