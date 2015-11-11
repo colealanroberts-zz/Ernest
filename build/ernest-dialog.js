@@ -1,4 +1,6 @@
 function detectKeyPress() {
+    'use strict';
+
     var e = event;
     window.addEventListener('keydown', function(e) {
         if (e.shiftKey && e.keyCode == 69) {
@@ -10,6 +12,8 @@ function detectKeyPress() {
 }
 
 function destroyDialog() {
+    'use strict';
+
     var ernestDialog = document.querySelector('.ernest-dialog');
     ernestDialog.classList.remove('ernest-dialog--active');
     setTimeout(function() {
@@ -18,6 +22,8 @@ function destroyDialog() {
 }
 
 function createDialog(wordPassed, obj) {
+    'use strict';
+
     var ernestDialog       = document.querySelector('.ernest-dialog'),
         ernestWordPassed   = document.querySelector('.ernest__word-passed'),
         ernestResults      = document.querySelector('.ernest__results'),
